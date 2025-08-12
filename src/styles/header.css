@@ -1,0 +1,56 @@
+header {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: .5rem 0;
+}
+
+header > a {
+    text-decoration: none;
+}
+
+.logo-link {
+    color: var(--secondary-color);
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-wrapper {
+    max-width: 40px;
+    display: flex;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-color);
+}
+
+.logo {
+    width: 100%;
+}
+
+.banner-title {
+    font-family: "Knewave", "roboto", sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: .05rem;
+}
+
+header nav a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+header nav a:hover,
+header nav a:focus {
+    text-decoration: underline;
+}
+
+
+
+@media only screen and (width <= 450px) {
+    .banner-title {
+        display: none;
+    }
+}

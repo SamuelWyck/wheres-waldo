@@ -1,0 +1,22 @@
+.image-card {
+    width: min(330px, 100%);
+    border: 3px solid var(--primary-color);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0px 0px 10px black;
+}
+
+.image-card img {
+    width: 100%;
+}
+
+.img-card-link {
+    will-change: transform;
+    transition: transform .1s linear;
+    z-index: 0;
+}
+
+.img-card-link:hover, .img-card-link:focus {
+    transform: scale(1.1);
+}

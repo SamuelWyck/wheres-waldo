@@ -1,0 +1,47 @@
+main.homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+    width: 100%;
+    padding: 5rem 1rem;
+}
+
+.image-choices {
+    width: min(1100px, 100%);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, min(330px, 100%));
+    justify-content: center;
+    gap: 2rem;
+}
+
+.rules {
+    font-size: clamp(.9rem, .5rem + 2vw, 1.3rem);
+    color: var(--primary-color);
+    font-family: "knewave";
+    letter-spacing: .05rem;
+}
+
+.targets {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.target-img-card img {
+    width: 100%;
+}
+
+.target-name {
+    text-align: center;
+    color: var(--primary-color);
+    font-family: "knewave";
+    font-size: clamp(.9rem, .5rem + 2vw, 1.2rem);
+    letter-spacing: .05rem;
+}
+
+.settings-title {
+    font-family: "knewave", "roboto", sans-serif;
+    letter-spacing: .05rem;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+}

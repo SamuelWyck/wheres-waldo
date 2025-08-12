@@ -11,4 +11,6 @@
 html {
 	font-size: 16px;
 	font-family: "roboto", sans-serif;
+	--primary-color: hsl(0, 70%, 54%);
+	--secondary-color: hsl(0, 0%, 92%);
 }

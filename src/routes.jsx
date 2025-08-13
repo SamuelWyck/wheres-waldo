@@ -15,7 +15,7 @@ const routes = [
                 element: <HomePage />
             },
             {
-                path: "/play/:imageName",
+                path: "/play/:imageId",
                 element: <GamePage />
             }
         ]

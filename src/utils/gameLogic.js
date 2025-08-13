@@ -100,12 +100,17 @@ async function makeGuess(event) {
 
     const xCoord = parentEle.dataset.x;
     const yCoord = parentEle.dataset.y;
-    let character = event.target.textContent;
-    character = character.toLowerCase();
+    const character = event.target.textContent.toLowerCase();
+
+    const image = document.querySelector(".game-image");
+    const imgWidth = image.clientWidth;
+    const imgHeight = image.clientHeight;
 
     console.log(xCoord);
     console.log(yCoord);
     console.log(character);
+    console.log(imgWidth);
+    console.log(imgHeight);
     // use this data to make call to backend
 };
 

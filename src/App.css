@@ -5,3 +5,12 @@
 	grid-template-rows: min-content 1fr min-content;
 	grid-template-columns: 100%;
 }
+
+.loading {
+	color: var(--primary-color);
+	font-family: "knewave", "roboto", sans-serif;
+	letter-spacing: .05rem;
+	font-size: 2rem;
+	width: fit-content;
+	margin: 5rem auto 0 auto;
+}

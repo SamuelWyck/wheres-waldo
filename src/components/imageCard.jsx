@@ -1,16 +1,12 @@
 import "../styles/imageCard.css";
 import { Link } from "react-router-dom";
-import parseImgName from "../utils/parseImgName.js";
 
 
 
-function ImageCard({image}) {
-    
-    const imageEndPoint = parseImgName(image);
-
+function ImageCard({image, imageId}) {
     return (
     <Link 
-        to={`/play/${imageEndPoint}`} 
+        to={`/play/${imageId}`} 
         className="img-card-link"
     >
     <div className="image-card">

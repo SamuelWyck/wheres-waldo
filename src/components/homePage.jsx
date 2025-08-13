@@ -1,11 +1,11 @@
 import "../styles/homePage.css";
 import { useState } from "react";
-import troyImg from "../assets/troy.jpg";
-import silentImg from "../assets/silentMovie.jpg";
-import thievesImg from "../assets/fourtyThieves.jpg";
-import threeMsImg from "../assets/threeMusketeers.jpg";
-import giantsImg from "../assets/giants.jpg";
-import movieSetImg from "../assets/movieSet.jpg";
+import troyImg from "../assets/waldo-troy.jpg";
+import silentImg from "../assets/waldo-silent-movie.jpg";
+import thievesImg from "../assets/waldo-40-thieves.jpg";
+import threeMsImg from "../assets/waldo-three-musketeers.jpg";
+import giantsImg from "../assets/waldo-giants.jpg";
+import movieSetImg from "../assets/waldo-movie-set.jpg";
 import waldoImg from "../assets/waldo.jpg";
 import wilmaImg from "../assets/wilma.jpg";
 import wizardImg from "../assets/wizard.jpg";

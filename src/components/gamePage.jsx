@@ -22,7 +22,7 @@ function GamePage() {
 
 
     return (
-        <main>
+        <main className="game-page">
             <div className="game-image-wrapper">
                 <div className="target-box hidden">
                     <div className="target-btns">
@@ -41,6 +41,10 @@ function GamePage() {
                     </div>
                 </div>
                 <div className="game-image"></div>
+                {/* <img 
+                    src={gameImg} alt="" 
+                    className="game-image" 
+                /> */}
             </div>
         </main>
     );

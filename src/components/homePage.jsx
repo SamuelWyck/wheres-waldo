@@ -1,11 +1,6 @@
 import "../styles/homePage.css";
-import { useState } from "react";
-import troyImg from "../assets/waldo-troy.jpg";
-import silentImg from "../assets/waldo-silent-movie.jpg";
-import thievesImg from "../assets/waldo-40-thieves.jpg";
-import threeMsImg from "../assets/waldo-three-musketeers.jpg";
-import giantsImg from "../assets/waldo-giants.jpg";
-import movieSetImg from "../assets/waldo-movie-set.jpg";
+import { useState, useEffect } from "react";
+import apiManager from "../utils/apiManager.js";
 import waldoImg from "../assets/waldo.jpg";
 import wilmaImg from "../assets/wilma.jpg";
 import wizardImg from "../assets/wizard.jpg";
@@ -14,24 +9,36 @@ import ImageCard from "./imageCard.jsx";
 
 
 function HomePage() {
-    const [imgCards, setImgCards] = useState(getImageCards([
-        troyImg,
-        silentImg,
-        thievesImg,
-        threeMsImg,
-        giantsImg,
-        movieSetImg
-    ]));
+    const [imgCards, setImgCards] = useState(null);
+
+    useEffect(function() {
+        apiManager.getIcons().then(function(res) {
+            if (res.error || res.errors || !res.icons) {
+                //navigate to error page
+            }
+            setImgCards(getImageCards(res.icons));
+        });
+    }, []);
 
 
     function getImageCards(images) {
         const imageCards = [];
         for (let image of images) {
-            imageCards.push(<ImageCard image={image}/>);
+            imageCards.push(
+                <ImageCard 
+                    image={image.iconUrl}
+                    imageId={image.imageId}
+                    key={image.imageId}
+                />
+            );
         }
         return imageCards;
     };
 
+
+    if (!imgCards) {
+        return <p className="loading">Loading...</p>;
+    }
 
     return (
     <main className="homepage">
@@ -50,7 +57,7 @@ function HomePage() {
             </div>
             <div className="target-img-card">
                 <img src={wizardImg} alt="wizard" />
-                <p className="target-name">Wizard</p>
+                <p className="target-name wizard-name">Wizard</p>
             </div>
         </div>
         <p className="settings-title">Choose a Setting</p>

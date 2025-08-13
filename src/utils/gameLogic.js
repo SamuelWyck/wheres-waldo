@@ -20,7 +20,6 @@ function showTargetBox(xCoord, yCoord) {
     let topCoord = yCoord - (targetBoxHeight / 2);
     let leftCoord = xCoord - (targetBoxWidth / 2);
     [leftCoord, topCoord] = clampCoords(
-        targetBox,
         targetBoxWidth,
         targetBoxHeight,
         leftCoord,
@@ -40,21 +39,21 @@ function showTargetBox(xCoord, yCoord) {
 };
 
 
-function clampCoords(targetBox, width, height, xCoord, yCoord) {
-    const parent = targetBox.parentElement;
+function clampCoords(width, height, xCoord, yCoord) {
+    const image = document.querySelector(".game-image");
     
-    const parentWidth = parent.clientWidth;
-    const parentHeight = parent.clientHeight;
+    const imageWidth = image.clientWidth;
+    const imageHeight = image.clientHeight;
 
     if (xCoord < 0) {
         xCoord = 0;
-    } else if (xCoord + width > parentWidth) {
-        xCoord = parentWidth - width;
+    } else if (xCoord + width > imageWidth) {
+        xCoord = imageWidth - width;
     }
     if (yCoord < 0) {
         yCoord = 0;
-    } else if (yCoord + height >parentHeight) {
-        yCoord = parentHeight - height;
+    } else if (yCoord + height > imageHeight) {
+        yCoord = imageHeight - height;
     }
     
     return [xCoord, yCoord];
@@ -63,8 +62,8 @@ function clampCoords(targetBox, width, height, xCoord, yCoord) {
 
 function positionTargetBtns(targetBox, xCoord, yCoord) {
     const btns = targetBox.firstChild;
-    const screenMidX = window.innerWidth / 2;
-    const screenMidY = window.innerHeight / 2;
+    const screenMidX = window.outerWidth / 2;
+    const screenMidY = window.outerHeight / 2;
 
     if (xCoord > screenMidX) {
         btns.style.right = "130%";

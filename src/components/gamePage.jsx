@@ -1,25 +1,41 @@
 import "../styles/gamePage.css";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import logic from "../utils/gameLogic.js";
+import apiManager from "../utils/apiManager.js";
+import storageManager from "../utils/storageManager.js";
 
 
 
 function GamePage() {
-    const {imageName} = useParams();
+    const {imageId} = useParams();
+    const [imageUrl, setImageUrl] = useState(null);
 
     useEffect(function() {
         document.addEventListener(
             "click", logic.positionTargetBox
         );
 
+        apiManager.startGame(imageId).then(function(res) {
+            if (res.error || res.errors) {
+                //navigate to error page
+            }
+
+            storageManager.storeGameId(res.gameId);
+            setImageUrl(res.image);
+        });
+
         return function() {
             document.removeEventListener(
                 "click", logic.positionTargetBox
             );
         };
-    }, []);
+    }, [imageId]);
 
+
+    if (!imageUrl) {
+        return <p className="loading">Loading...</p>;
+    }
 
     return (
         <main className="game-page">
@@ -40,11 +56,10 @@ function GamePage() {
                         >Cancel</button>
                     </div>
                 </div>
-                <div className="game-image"></div>
-                {/* <img 
-                    src={gameImg} alt="" 
+                <img 
+                    src={imageUrl} alt="" 
                     className="game-image" 
-                /> */}
+                />
             </div>
         </main>
     );

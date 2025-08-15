@@ -10,7 +10,7 @@ class ApiManager {
 
 
     async getIcons() {
-        const url = `${this.#apiDomain}/assets/icons`;
+        const url = `${this.#apiDomain}/icons`;
         const options = {
             method: "GET",
             mode: "cors"

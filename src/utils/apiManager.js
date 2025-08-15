@@ -19,6 +19,18 @@ class ApiManager {
         const response = await this.#makeApiCall(url, options);
         return response;
     };
+
+
+    async startGame(imageId) {
+        const url = `${this.#apiDomain}/play/start/${imageId}`;
+        const options = {
+            method: "GET",
+            mode: "cors"
+        };
+
+        const response = await this.#makeApiCall(url, options);
+        return response;
+    };
 };
 
 

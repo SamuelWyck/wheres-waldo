@@ -1,12 +1,19 @@
+import apiManager from "./apiManager.js";
+
+
+
 function positionTargetBox(event) {
     if (!event.target.matches(".game-image")) {
         return;
     }
-    showTargetBox(event.offsetX, event.offsetY);
+    showTargetBox(event);
 };
 
 
-function showTargetBox(xCoord, yCoord) {
+function showTargetBox(event) {
+    const xCoord = event.offsetX;
+    const yCoord = event.offsetY;
+
     const targetBox = document.querySelector(
         ".target-box"
     );
@@ -29,7 +36,7 @@ function showTargetBox(xCoord, yCoord) {
     targetBox.style.top = `${topCoord}px`;
     targetBox.style.left = `${leftCoord}px`;
 
-    positionTargetBtns(targetBox, xCoord, yCoord);
+    positionTargetBtns(targetBox, event.clientX, event.clientY);
 
     const btns = targetBox.firstChild;
     btns.dataset.x = leftCoord;
@@ -94,23 +101,37 @@ function hideTargetBox() {
 async function makeGuess(event) {
     const parentEle = event.target.parentElement;
     const targetBox = parentEle.parentElement;
-
-    targetBox.classList.add("hidden");
-
+    
     const xCoord = parentEle.dataset.x;
     const yCoord = parentEle.dataset.y;
     const character = event.target.textContent.toLowerCase();
 
     const image = document.querySelector(".game-image");
-    const imgWidth = image.clientWidth;
-    const imgHeight = image.clientHeight;
+    const imageWidth = image.clientWidth;
+    const imageHeight = image.clientHeight;
 
-    console.log(xCoord);
-    console.log(yCoord);
-    console.log(character);
-    console.log(imgWidth);
-    console.log(imgHeight);
-    // use this data to make call to backend
+    targetBox.classList.add("hidden");
+
+    let reqBody = {
+        xCoord,
+        yCoord,
+        imageWidth,
+        imageHeight,
+        character
+    };
+    reqBody = JSON.stringify(reqBody);
+
+    const res = await apiManager.makeGuess(reqBody);   
+    return [res, {x: xCoord, y: yCoord}];
+};
+
+
+function showLeaderboardForm() {
+    const leaderBoardModal = document.querySelector(
+        ".form-modal"
+    );
+
+    leaderBoardModal.classList.remove("hidden");
 };
 
 
@@ -118,5 +139,6 @@ async function makeGuess(event) {
 export default {
     positionTargetBox,
     hideTargetBox,
-    makeGuess
+    makeGuess,
+    showLeaderboardForm
 };

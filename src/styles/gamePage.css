@@ -42,3 +42,79 @@
 .game-image {
     display: block;
 }
+
+.form-modal.hidden {
+    display: none;
+}
+
+.form-modal {
+    position: fixed;
+    width: fit-content;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    top: 30%;
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    border: 3px solid var(--primary-color);
+    z-index: 1;
+}
+
+.form-modal form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-modal form label {
+    display: block;
+    color: var(--primary-color);
+    font-size: clamp(1rem, .5rem + 2vw, 1.3rem);
+}
+
+.form-modal form p {
+    font-size: clamp(1rem, .5rem + 2vw, 1.3rem);
+    font-family: "knewave", "roboto", sans-serif;
+    letter-spacing: .05rem;
+    color: var(--primary-color);
+}
+
+.form-modal form input {
+    font-size: 1rem;
+    padding: .2rem;
+    outline: none;
+    border: 2px solid var(--primary-color);
+}
+
+.form-modal form input:hover, 
+.form-modal form input:focus {
+    border-color: var(--text-dark);
+}
+
+.form-modal button {
+    cursor: pointer;
+    border: 2px solid var(--primary-color);
+    outline: none;
+    font-size: 1rem;
+    padding: .4rem 1rem;
+    font-family: "knewave", "roboto", sans-serif;
+    letter-spacing: .05rem;
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+}
+
+.form-modal button:hover, .form-modal button:focus {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+.errors {
+    list-style: none;
+    width: 100%;
+}
+
+.error {
+    max-width: 20ch;
+    word-break: break-word;
+}

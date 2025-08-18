@@ -22,28 +22,6 @@ main.homepage {
     letter-spacing: .05rem;
 }
 
-/* .targets {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.target-img-card img {
-    width: 100%;
-}
-
-.target-name {
-    text-align: center;
-    color: var(--primary-color);
-    font-family: "knewave";
-    font-size: clamp(.9rem, .5rem + 2vw, 1.2rem);
-    letter-spacing: .05rem;
-}
-
-.target-name.wizard-name {
-    position: relative;
-    left: -8px;
-} */
-
 .settings-title {
     font-family: "knewave", "roboto", sans-serif;
     letter-spacing: .05rem;

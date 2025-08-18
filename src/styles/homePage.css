@@ -20,6 +20,8 @@ main.homepage {
     color: var(--primary-color);
     font-family: "knewave";
     letter-spacing: .05rem;
+    max-width: 51ch;
+    word-break: break-word;
 }
 
 .settings-title {

@@ -43,6 +43,7 @@ function HomePage() {
         <p className="rules">
             Try to find Waldo, Wilma, 
             and the Wizard as fast as you can!
+            Correct guesses will be marked with a checkmark.
         </p>
         <TargetsCard />
         <p className="settings-title">Choose a Setting</p>

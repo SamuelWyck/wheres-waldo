@@ -22,7 +22,7 @@ main.homepage {
     letter-spacing: .05rem;
 }
 
-.targets {
+/* .targets {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -42,7 +42,7 @@ main.homepage {
 .target-name.wizard-name {
     position: relative;
     left: -8px;
-}
+} */
 
 .settings-title {
     font-family: "knewave", "roboto", sans-serif;

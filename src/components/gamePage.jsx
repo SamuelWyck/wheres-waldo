@@ -16,7 +16,6 @@ function GamePage() {
     const [charMarkers, setCharMarkers] = useState([]);
     const [errors, setErrors] = useState(null);
 
-
     useEffect(function() {
         errorsRef.current = null;
         document.addEventListener(
@@ -95,7 +94,7 @@ function GamePage() {
             return;
         }
 
-        navigate("/", {replace: true});
+        navigate("/leaderboard", {replace: true});
     };
 
 

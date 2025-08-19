@@ -1,6 +1,7 @@
 import "../styles/gamePage.css";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import zoomImg from "../assets/magnify.svg";
 import logic from "../utils/gameLogic.js";
 import apiManager from "../utils/apiManager.js";
 import storageManager from "../utils/storageManager.js";
@@ -106,6 +107,10 @@ function GamePage() {
     return (
         <main className="game-page">
             <div className="game-image-wrapper">
+                <button
+                    className="zoom-btn"
+                    onClick={logic.handleZoom}
+                ><img src={zoomImg} alt="zoom" /></button>
                 <div className="target-box hidden">
                     <div className="target-btns">
                         <button 

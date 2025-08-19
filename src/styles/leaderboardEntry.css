@@ -1,0 +1,35 @@
+.leaderboard-entry {
+    display: grid;
+    grid-template-columns: 8ch max-content max-content;
+    padding: 1rem;
+    color: var(--primary-color);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.entry-time {
+    justify-self: center;
+    color: var(--text-dark);
+}
+
+.entry-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
+.entry-date {
+    opacity: .7;
+}
+
+
+
+@media only screen and (width <= 400px) {
+    .leaderboard-entry {
+        grid-template-columns: 12ch max-content;
+    }
+
+    .leaderboard > * > .entry-date {
+        display: none;
+    }
+}

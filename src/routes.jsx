@@ -1,6 +1,7 @@
 import App from "./App.jsx";
 import HomePage from "./components/homePage.jsx";
 import GamePage from "./components/gamePage.jsx";
+import ErrorPage from "./components/errorPage.jsx";
 
 
 
@@ -17,8 +18,13 @@ const routes = [
             {
                 path: "/play/:imageId",
                 element: <GamePage />
+            },
+            {
+                path: "/error",
+                element: <ErrorPage appError={false} />
             }
-        ]
+        ],
+        errorElement: <ErrorPage appError={true} />
     }
 ];
 

@@ -1,0 +1,28 @@
+main.error-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.error-title {
+    margin-top: 6rem;
+    font-size: clamp(.9rem, .5rem + 2vw, 1.3rem);
+    color: var(--primary-color);
+    font-family: "knewave";
+    letter-spacing: .05rem;
+    max-width: 51ch;
+    word-break: break-word;
+}
+
+.errors-list {
+    list-style: none;
+}
+
+.error-ele {
+    font-size: clamp(.9rem, .5rem + 2vw, 1.3rem);
+    color: var(--primary-color);
+    max-width: 51ch;
+    word-break: break-word;
+    font-weight: bold;
+}

@@ -6,6 +6,9 @@ function positionTargetBox(event) {
     if (!event.target.matches(".game-image")) {
         return;
     }
+    if (event.target.matches(".zoom-out")) {
+        return;
+    }
     showTargetBox(event);
 };
 
@@ -135,10 +138,43 @@ function showLeaderboardForm() {
 };
 
 
+function handleZoom() {
+    const charMarkers = document.querySelectorAll(
+        ".character-marker"
+    );
+    const gameImg = document.querySelector(".game-image");
+
+    const oldWidth = gameImg.clientWidth;
+    const oldHeight = gameImg.clientHeight;
+    gameImg.classList.toggle("zoom-out");
+    const newWidth = gameImg.clientWidth;
+    const newHeight = gameImg.clientHeight;
+
+    for (let marker of charMarkers) {
+        const oldX = parsePixelNumber(marker.style.left);
+        const oldY = parsePixelNumber(marker.style.top);
+        const newX = newWidth * (oldX / oldWidth);
+        const newY = newHeight * (oldY / oldHeight);
+        marker.style.top = `${newY}px`;
+        marker.style.left = `${newX}px`;
+    };
+
+    hideTargetBox();
+};
+
+
+function parsePixelNumber(pxNumber) {
+    const numberIndex = 0;
+    const numberParts = pxNumber.split("p");
+    return Number(numberParts[numberIndex]);
+};
+
+
 
 export default {
     positionTargetBox,
     hideTargetBox,
     makeGuess,
-    showLeaderboardForm
+    showLeaderboardForm,
+    handleZoom
 };

@@ -1,5 +1,5 @@
 import "../styles/gamePage.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import logic from "../utils/gameLogic.js";
 import apiManager from "../utils/apiManager.js";
@@ -10,6 +10,7 @@ import CharacterMarker from "./characterMarker.jsx";
 
 function GamePage() {
     const navigate = useNavigate();
+    const errorsRef = useOutletContext();
     const {imageId} = useParams();
     const [imageUrl, setImageUrl] = useState(null);
     const [charMarkers, setCharMarkers] = useState([]);
@@ -17,13 +18,15 @@ function GamePage() {
 
 
     useEffect(function() {
+        errorsRef.current = null;
         document.addEventListener(
             "click", logic.positionTargetBox
         );
 
         apiManager.startGame(imageId).then(function(res) {
-            if (res.error || res.errors) {
-                //navigate to error page
+            if (res.errors) {
+                errorsRef.current = res.errors;
+                navigate("/error");
             }
 
             storageManager.storeGameId(res.gameId);
@@ -35,13 +38,14 @@ function GamePage() {
                 "click", logic.positionTargetBox
             );
         };
-    }, [imageId]);
+    }, [imageId, errorsRef, navigate]);
 
 
     async function handleGuess(event) {
         const [res, coords] = await logic.makeGuess(event);
-        if (res.errors || res.error) {
-            //nav to error page
+        if (res.errors) {
+            errorsRef.current = res.errors;
+            navigate("/error");
         }
         const found = 1;
 
@@ -91,7 +95,7 @@ function GamePage() {
             return;
         }
 
-        navigate("/");
+        navigate("/", {replace: true});
     };
 
 

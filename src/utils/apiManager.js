@@ -9,9 +9,13 @@ class ApiManager {
 
 
     async #makeApiCall(url, options) {
-        const res = await fetch(url, options);
-        const jsonRes = await res.json();
-        return jsonRes;
+        try {
+            const res = await fetch(url, options);
+            const jsonRes = await res.json();
+            return jsonRes;
+        } catch {
+            return {errors: [{msg: "Server error"}]};
+        }
     };
 
 

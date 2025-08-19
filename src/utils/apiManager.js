@@ -77,6 +77,18 @@ class ApiManager {
         const response = await this.#makeApiCall(url, options);
         return response;
     };
+
+
+    async getLeaderboard() {
+        const url = `${this.#apiDomain}/leaderboard`;
+        const options = {
+            mode: "cors",
+            method: "GET"
+        };
+
+        const response = await this.#makeApiCall(url, options);
+        return response;
+    };
 };
 
 

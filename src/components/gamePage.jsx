@@ -2,10 +2,12 @@ import "../styles/gamePage.css";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import zoomImg from "../assets/magnify.svg";
+import helpImg from "../assets/help.svg";
 import logic from "../utils/gameLogic.js";
 import apiManager from "../utils/apiManager.js";
 import storageManager from "../utils/storageManager.js";
 import CharacterMarker from "./characterMarker.jsx";
+import TargetsCard from "./targetsCard.jsx";
 
 
 
@@ -111,6 +113,13 @@ function GamePage() {
                     className="zoom-btn"
                     onClick={logic.handleZoom}
                 ><img src={zoomImg} alt="zoom" /></button>
+                <button 
+                    className="help-btn"
+                    onClick={logic.handleHelp}
+                ><img src={helpImg} alt="help" /></button>
+                <div className="info-modal hidden">
+                    <TargetsCard />
+                </div>
                 <div className="target-box hidden">
                     <div className="target-btns">
                         <button 

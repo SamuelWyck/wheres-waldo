@@ -6,9 +6,12 @@ function positionTargetBox(event) {
     if (!event.target.matches(".game-image")) {
         return;
     }
+    const infoModal = document.querySelector(".info-modal");
+    infoModal.classList.add("hidden");
     if (event.target.matches(".zoom-out")) {
         return;
     }
+    
     showTargetBox(event);
 };
 
@@ -170,11 +173,18 @@ function parsePixelNumber(pxNumber) {
 };
 
 
+function handleHelp() {
+    const infoModal = document.querySelector(".info-modal");
+    infoModal.classList.toggle("hidden");
+};
+
+
 
 export default {
     positionTargetBox,
     hideTargetBox,
     makeGuess,
     showLeaderboardForm,
-    handleZoom
+    handleZoom,
+    handleHelp
 };

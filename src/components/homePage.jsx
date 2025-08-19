@@ -3,20 +3,25 @@ import { useState, useEffect } from "react";
 import apiManager from "../utils/apiManager.js";
 import TargetsCard from "./targetsCard.jsx";
 import ImageCard from "./imageCard.jsx";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 
 
 function HomePage() {
+    const errorsRef = useOutletContext();
+    const navigate = useNavigate();
     const [imgCards, setImgCards] = useState(null);
 
     useEffect(function() {
+        errorsRef.current = null;
         apiManager.getIcons().then(function(res) {
-            if (res.error || res.errors || !res.icons) {
-                //navigate to error page
+            if (res.errors) {
+                errorsRef.current = res.errors;
+                navigate("/error");
             }
             setImgCards(getImageCards(res.icons));
         });
-    }, []);
+    }, [navigate, errorsRef]);
 
 
     function getImageCards(images) {

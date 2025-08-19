@@ -1,0 +1,25 @@
+main.leaderboard-page {
+    margin: 5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+}
+
+.leaderboard {
+    width: min(700px, 100%);
+    border: 3px solid var(--primary-color);
+}
+
+.leaderboard > :nth-child(2n) {
+    background-color: var(--secondary-color);
+}
+
+.leaderboard-title {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-family: "knewave";
+    letter-spacing: .05rem;
+    max-width: 51ch;
+    word-break: break-word;
+}

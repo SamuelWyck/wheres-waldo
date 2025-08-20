@@ -8,9 +8,9 @@ function positionTargetBox(event) {
     }
     const infoModal = document.querySelector(".info-modal");
     infoModal.classList.add("hidden");
-    if (event.target.matches(".zoom-out")) {
-        return;
-    }
+    // if (event.target.matches(".zoom-out")) {
+    //     return;
+    // }
     
     showTargetBox(event);
 };
@@ -142,27 +142,14 @@ function showLeaderboardForm() {
 
 
 function handleZoom() {
-    const charMarkers = document.querySelectorAll(
-        ".character-marker"
-    );
     const gameImg = document.querySelector(".game-image");
-
-    const oldWidth = gameImg.clientWidth;
-    const oldHeight = gameImg.clientHeight;
     gameImg.classList.toggle("zoom-out");
     const newWidth = gameImg.clientWidth;
     const newHeight = gameImg.clientHeight;
-
-    for (let marker of charMarkers) {
-        const oldX = parsePixelNumber(marker.style.left);
-        const oldY = parsePixelNumber(marker.style.top);
-        const newX = newWidth * (oldX / oldWidth);
-        const newY = newHeight * (oldY / oldHeight);
-        marker.style.top = `${newY}px`;
-        marker.style.left = `${newX}px`;
-    };
-
+    
+    positionMarkers(newWidth, newHeight);
     hideTargetBox();
+    resizeTargetBox(newWidth);
 };
 
 
@@ -173,9 +160,57 @@ function parsePixelNumber(pxNumber) {
 };
 
 
+function resizeTargetBox(imageWidth) {
+    const targetBox = document.querySelector(".target-box");
+    const targetBoxWidthRatio = .0085;
+    const newTargetBoxWidth = imageWidth * targetBoxWidthRatio;
+    targetBox.style.width = `${newTargetBoxWidth}px`;
+    targetBox.style.height = `${newTargetBoxWidth}px`;
+};
+
+
+function positionMarkers(newWidth, newHeight) {
+    const charMarkers = document.querySelectorAll(
+        ".character-marker"
+    );
+
+    for (let marker of charMarkers) {
+        const oldWidth = Number(marker.dataset.imgwidth);
+        const oldHeight = Number(marker.dataset.imgheight);
+        const oldX = parsePixelNumber(marker.style.left);
+        const oldY = parsePixelNumber(marker.style.top);
+        const newX = newWidth * (oldX / oldWidth);
+        const newY = newHeight * (oldY / oldHeight);
+        marker.style.top = `${newY}px`;
+        marker.style.left = `${newX}px`;
+        marker.dataset.imgwidth = newWidth;
+        marker.dataset.imgheight = newHeight;
+    };
+};
+
+
 function handleHelp() {
     const infoModal = document.querySelector(".info-modal");
     infoModal.classList.toggle("hidden");
+};
+
+
+function handleResize() {
+    const gameImg = document.querySelector(".game-image");
+    if (!gameImg.matches(".zoom-out")) {
+        return;
+    }
+
+    const newWidth = gameImg.clientWidth;
+    const newHeight = gameImg.clientHeight;
+    resizeTargetBox(newWidth);
+    positionMarkers(newWidth, newHeight);
+};
+
+
+function getGameImgSize() {
+    const gameImg = document.querySelector(".game-image");
+    return [gameImg.clientWidth, gameImg.clientHeight];
 };
 
 
@@ -186,5 +221,7 @@ export default {
     makeGuess,
     showLeaderboardForm,
     handleZoom,
-    handleHelp
+    handleHelp,
+    handleResize,
+    getGameImgSize
 };

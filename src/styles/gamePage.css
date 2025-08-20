@@ -58,7 +58,8 @@ main.game-page {
 .game-image-wrapper > button {
     cursor: pointer;
     position: fixed;
-    width: 45px;
+    /* width: 45px; */
+    width: clamp(45px, 2vw + 20px, 60px);
     display: flex;
     background-color: var(--primary-color);
     border: none;

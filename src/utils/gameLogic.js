@@ -8,9 +8,6 @@ function positionTargetBox(event) {
     }
     const infoModal = document.querySelector(".info-modal");
     infoModal.classList.add("hidden");
-    // if (event.target.matches(".zoom-out")) {
-    //     return;
-    // }
     
     showTargetBox(event);
 };

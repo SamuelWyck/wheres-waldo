@@ -24,6 +24,9 @@ function GamePage() {
         document.addEventListener(
             "click", logic.positionTargetBox
         );
+        window.addEventListener(
+            "resize", logic.handleResize
+        );
 
         apiManager.startGame(imageId).then(function(res) {
             if (res.errors) {
@@ -38,6 +41,9 @@ function GamePage() {
         return function() {
             document.removeEventListener(
                 "click", logic.positionTargetBox
+            );
+            window.removeEventListener(
+                "resize", logic.handleResize
             );
         };
     }, [imageId, errorsRef, navigate]);
@@ -55,9 +61,13 @@ function GamePage() {
             logic.showLeaderboardForm()
         }
         if (res.found === found) {
+            const [imgWidth, imgHeight] = logic.getGameImgSize();
             charMarkers.push(
                 <CharacterMarker 
-                    xCoord={coords.x} yCoord={coords.y}
+                    xCoord={coords.x} 
+                    yCoord={coords.y}
+                    imgWidth={imgWidth}
+                    imgHeight={imgHeight}
                     key={coords.x} 
                 />
             );

@@ -3,7 +3,7 @@ import storageManager from "./storageManager.js";
 
 
 class ApiManager {
-    #apiDomain = "http://wheres-waldo-api-rz9r.onrender.com";
+    #apiDomain = "https://wheres-waldo-api-rz9r.onrender.com";
     #storage = storageManager;
 
 
